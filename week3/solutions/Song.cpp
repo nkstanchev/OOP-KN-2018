@@ -53,3 +53,27 @@ std::ostream& operator <<(std::ostream& os, const Song& song) {
     os << song.durationInMinutes << std::endl;
     return os;
 }
+std::istream& operator>>(istream& is, Song& song) {
+    delete[] song.name;
+    delete[] song.artist;
+
+    char* buffer = new char[SIZE];
+
+    is.getline(buffer, SIZE);
+    song.artist = new char[strlen(buffer) + 1];
+    strcpy(song.artist, buffer);
+
+    is.getline(buffer, SIZE);
+    song.name = new char[strlen(buffer) + 1];
+    strcpy(song.name, buffer);
+
+    is >> song.duration;
+    is.ignore();
+
+    is.getline(buffer, SIZE);
+    song.genre = new char[strlen(buffer) + 1];
+    strcpy(song.genre, buffer);
+
+    delete[] buffer;
+    return is;
+}
