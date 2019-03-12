@@ -27,4 +27,5 @@ public:
     Movie& operator =(const Movie&);
     ~Movie();
     friend std::ostream& operator <<(std::ostream&,const Movie&);
+    friend istream& operator>>(istream& is, Movie& movie);
 };
