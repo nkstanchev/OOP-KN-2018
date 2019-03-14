@@ -60,3 +60,23 @@ std::ostream& operator <<(std::ostream& os, const Movie& movie) {
     os << movie.durationInHours << std::endl;
     return os;
 }
+std::istream& operator>>(istream& is, Movie& movie) {
+    delete[] movie.name;
+    delete[] movie.director;
+
+    char* buffer = new char[SIZE];
+
+    is.getline(buffer, SIZE);
+    movie.name = new char[strlen(buffer) + 1];
+    strcpy(movie.name, buffer);
+
+    is.getline(buffer, SIZE);
+    movie.director = new char[strlen(buffer) + 1];
+    strcpy(movie.director, buffer);
+
+    is >> movie.minutes;
+    is.ignore();
+
+    delete[] buffer;
+    return is;
+}

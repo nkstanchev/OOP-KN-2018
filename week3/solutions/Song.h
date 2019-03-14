@@ -18,4 +18,5 @@ public:
     Song& operator =(const Song&);
     ~Song();
     friend std::ostream& operator <<(std::ostream& os, const Song& song);
+    std::friend istream& operator>>(istream& is, Song& song);
 };
